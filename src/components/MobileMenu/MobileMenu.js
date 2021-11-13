@@ -20,27 +20,29 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
       onDismiss={onDismiss}
     >
       <Content aria-label="Mobile Menu">
-      <Header>
-          <CloseButton onClick={onDismiss}>
-            <Icon id="close" />
-          </CloseButton>
-          <VisuallyHidden>
-            Dismiss modal
-          </VisuallyHidden>
-      </Header>
-        <nav>
-          <Link href="/sale">Sale</Link>
+        <Wrapper>
+        <Header>
+            <CloseButton onClick={onDismiss}>
+              <Icon id="close" />
+            </CloseButton>
+            <VisuallyHidden>
+              Dismiss modal
+            </VisuallyHidden>
+        </Header>
+        <Nav>
+          <ActiveLink href="/sale">Sale</ActiveLink>
           <Link href="/new">New&nbsp;Releases</Link>
           <Link href="/men">Men</Link>
           <Link href="/women">Women</Link>
           <Link href="/kids">Kids</Link>
           <Link href="/collections">Collections</Link>
-        </nav>
+        </Nav>
         <Footer>
           <Link href="/terms">Terms and Conditions</Link>
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/contact">Contact Us</Link>
         </Footer>
+        </Wrapper>
       </Content>
     </Overlay>
   );
@@ -52,38 +54,31 @@ const Overlay = styled(DialogOverlay)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-primary-alpha3);
+  background: var(--color-overlay);
 `;
 
 const Content = styled(DialogContent)`
   position: relative;
   background: white;
-  padding: 0 16px;
-  border-radius: 0 0 8px 8px;
-
-  nav {
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media ${QUERIES.phoneAndDown} {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
+  padding: 0 32px;
+  padding-right: 0;
+  padding-bottom: 16px;
+  margin-left: auto;
+  height: 100%;
+  width: 300px;
 `;
 
-const Footer = styled.footer`
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid hsl(0deg 0% 80%);
-    gap: 1.5rem;
-    padding: 8px 0;
+const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+`;
 
-    @media ${QUERIES.phoneAndDown} {
-      flex-direction: column;
-      gap: revert;
-    }
+const Nav = styled.nav`
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Header = styled.header`
@@ -91,7 +86,6 @@ const Header = styled.header`
   padding-left: 16px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid hsl(0deg 0% 80%);
 `;
 
 const CloseButton = styled(UnstyledButton)`
@@ -121,7 +115,19 @@ const Link = styled.a`
 `;
 
 const ActiveLink = styled(Link)`
-  color: var(--color-primary);
+  color: var(--color-secondary);
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 8px 0;
+
+  & ${Link} {
+    color: var(--color-gray-700);
+    font-size: ${14 / 16}rem;
+  }
 `;
 
 export default MobileMenu;

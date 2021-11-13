@@ -80,6 +80,8 @@ html {
   --color-gray-700: ${COLORS.gray[700]};
   --color-gray-900: ${COLORS.gray[900]};
 
+  --color-overlay: hsl(0deg 0% 0% / 0.5);
+
   --primary: ${COLORS.primaryBase};
   --color-primary: hsl(var(--primary) 47%);
   --color-primary-alpha3: hsl(var(--primary) 50% / 0.1);
